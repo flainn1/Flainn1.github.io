@@ -1,278 +1,300 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>bio Sypza</title>
-    <style>
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            height: 90vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль пользователя</title>
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/192540128?u=eec73ea81d81eb1c6ef3aab6b5e6bd4cba123272&v=4&size=64" type="image/png"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .snow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            background: transparent;
-            z-index: -1;
-        }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
 
-        .snowflake {
-            position: absolute;
-            top: -10%;
-            color: white;
-            font-size: 1em; 
-            opacity: 0.8;
-            user-select: none;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
+    .falling-symbols {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
 
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
+    .symbol {
+      position: absolute;
+      top: -10px;
+      font-size: 20px;
+      color: white;
+      animation: fall linear infinite;
+    }
 
-        .content-container {
-            padding: 20px; 
-            border-radius: 10px;
-            background-color: #111;
-            box-shadow: 0 0 5px white, 0 0 10px white;
-            width: 90%; 
-            max-width: 600px; 
-        }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
 
-        h1 {
-            text-align: center;
-            font-weight: bold;
-            font-size: 24px; 
-            text-shadow: 0 0 5px white, 0 0 10px white; 
-        }
+    .profile-card {
+      position: relative;
+      text-align: center;
+      background-color: black;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      padding: 20px;
+      width: 90%;
+      max-width: 600px;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeIn 0.5s forwards;
+      z-index: 1;
+    }
 
-        .image-container {
-            text-align: center;
-        }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
-        img {
-            border-radius: 10px;
-            max-width: 100%;
-            height: auto; 
-        }
+    .username {
+      font-size: 18px;
+      color: white;
+      margin: 10px 0;
+      animation: glowing 1.5s infinite alternate;
+    }
 
-        .header-line {
-            border-top: 1px solid white;
-            margin: 5px 0;
-        }
+    @keyframes glowing {
+      0% {
+        text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px #6e57e0, 0 0 20px #6e57e0, 0 0 25px #6e57e0;
+      }
+      100% {
+        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px #6e57e0, 0 0 40px #6e57e0, 0 0 50px #6e57e0;
+      }
+    }
 
-        .content {
-            padding-top: 5px;
-            text-align: center;
-        }
+    .bio {
+      color: #bbb;
+      font-size: 14px;
+      margin: 10px 0;
+    }
 
-        .button-container {
-            display: flex;
-            justify-content: center; 
-        }
+    .separator {
+      height: 1px;
+      background-color: #444;
+      margin: 15px 0;
+    }
 
-        .button {
-            display: inline-flex; 
-            justify-content: center; 
-            align-items: center; 
-            background-color: #111; 
-            color: #ffffff; 
-            border-radius: 5px; 
-            padding: 8px 16px; 
-            font-size: 0.8rem; 
-             cursor :pointer ; 
-             text-decoration :none ; 
-             margin-left :5px ; 
-             transition :background-color 0.3s; 
-         }
+    .chat-info {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #bbb;
+    }
 
-         .button:hover {
-             background-color:#222; 
-         }
+    .links-title {
+      margin: 15px 0 10px;
+      color: white;
+      font-size: 14px;
+    }
 
-         .friends-list {
-             display: none; 
-             margin-top: -10px; 
-         }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: -5px;
+      flex-wrap: wrap;
+    }
 
-         .friend-toggle, .friend-toggle-collapse {
-             cursor: pointer;
-             color: #ffffff; 
-             margin-top: 10px; 
-             display:block; 
-             text-align:center; 
-         }
+    .button {
+      display: inline-flex; 
+      justify-content: center; 
+      align-items: center; 
+      background-color: #111; 
+      color: #ffffff; 
+      border-radius: 5px; 
+      padding: 5px 10px; 
+      font-size: 0.7rem; 
+      cursor: pointer; 
+      text-decoration: none; 
+      margin: 5px; 
+      transition: background-color 0.3s; 
+    }
 
-         .friend-toggle-collapse {
-             margin-top: 10px; 
-         }
+    .button:hover {
+      background-color: #222; 
+    }
 
-         @media (max-width: 600px) { 
-             h1 {
-                 font-size: 12px; 
-                 text-shadow: 0 0 5px white, 0 0 15px white; 
-             }
-             
-             .content-container {
-                 padding: 10px; 
-                 font-size: 12px; 
-             }
-             
-             .button {
-                 padding: 4px 8px; 
-                 font-size: 0.6rem; 
-             }
-         }
-    </style>
+    .profile-image {
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    .profile-image img {
+      width: 100%;
+      max-width: 300px; 
+      height: auto;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .username {
+        font-size: 16px; 
+      }
+
+      .bio {
+        font-size: 12px;
+      }
+
+      .chat-info {
+        font-size: 10px; 
+      }
+
+      .links-title {
+        font-size: 12px; 
+      }
+
+      .button {
+        padding: 4px 8px; 
+        font-size: 0.6rem; 
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="snow"></div>
-    <div class="content-container">
-        <div class="image-container">
-           <img src="https://media1.tenor.com/m/beZEsYQl7XIAAAAd/lelouch-zero.gif" alt="Image">
-       </div>
-
-       <h1 id="name">安雅图戈娃·亚历山大 | 安雅图戈娃·亚历山大</h1>
-
-       <div class="content">Information about me:</div>
-       <div class="header-line"></div>
-       <div class="content">Nickname: flainn1</div>
-       <div class="content">hobby: Coding</div>
-       <div class="content">Country: Russian Federation</div>
-
-       <div class="header-line"></div>
-       <div class="content">My friend:</div>
-       <div class="content">sypza</div>
-       <div class="header-line"></div>
-       <div class="content">Active in these chats:</div>
-       <div class="content">waithware chat</div>
-       <div class="content">Dota 2 / ru hub chat</div>
-       <div class="content">Flainn chat</div>
-
-       <div class="header-line"></div>
-       <div class="content">LINKS</div>
-       <div class="button-container">
-           <a href="https://t.me/flainn1" class="button">Telegram Account</a>
-           <a href="https://t.me/waithwareso2" class="button">Telegram Channel</a>
-       </div>
+  <div class="falling-symbols"></div>
+  <div class="profile-card">
+    <div class="profile-image">
+      <img src="https://media1.tenor.com/m/beZEsYQl7XIAAAAd/lelouch-zero.gif" alt="Profile">
     </div>
+    <h1 id="name" class="username">SYPZA</h1>
+    <p class="bio">
+      Nickname: Flainn1<br>
+      Hobby: development of cheats<br>
+      Country: the Republic of Belarus
+    </p>
+    <div class="separator"></div>
+    <p class="chat-info">
+      Active in these chats:<br>
+      waithware chat<br>
+      Dota 2 / ru hub chat<br>
+      Flainn chat
+    </p>
+    <div class="separator"></div>
+    <h2 class="links-title">LINKS</h2>
+    <div class="button-container">
+      <a href="https://t.me/flainn1" class="button">Telegram Account</a>
+      <a href="https://steamcommunity.com/profiles/76561199246904315/" class="button">Steam Account</a>
+      <a href="https://open.spotify.com/user/your_spotify_user_id" class="button">Spotify</a>
+    </div>
+    <div class="button-container">
+      <a href="http://t.me/+Gf87_ANRd6EwNTky" class="button">WaithWare</a>
+      <a href="https://t.me/waithwareso2" class="button">Flainn Pubg</a>
+    </div>
+  </div>
 
-    <script>
-        const snowContainer = document.querySelector('.snow');
-        const snowflakes = 100;
+  <script>
+    function createFallingSymbols() {
+      const symbols = '♰';
+      const container = document.querySelector('.falling-symbols');
+      for (let i = 0; i < 50; i++) {
+        const symbol = document.createElement('div');
+        symbol.classList.add('symbol');
+        symbol.textContent = symbols.charAt(Math.floor(Math.random() * symbols.length));
+        symbol.style.left = `${Math.random() * 100}vw`;
+        symbol.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        symbol.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(symbol);
+      }
+    }
 
-        for (let i = 0; i < snowflakes; i++) {
-           const snowflake = document.createElement('div');
-           snowflake.classList.add('snowflake');
-           snowflake.textContent = '❄';
-           snowflake.style.left = Math.random() * 100 + 'vw';
-           snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
-           snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
-           snowContainer.appendChild(snowflake);
+    createFallingSymbols();
+
+    class TextScramble {
+      constructor(el) {
+        this.el = el;
+        this.chars = '!@#$%^&*()_-=+{}:"|<>?,./;';
+        this.update = this.update.bind(this);
+      }
+      
+      setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
+        
+        for (let i = 0; i < length; i++) {
+          const from = oldText[i] || '';
+          const to = newText[i] || '';
+          const start = Math.floor(Math.random() * 40);
+          const end = start + Math.floor(Math.random() * 40);
+          this.queue.push({ from, to, start, end });
         }
+        
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+      }
+      
+      update() {
+        let output = '';
+        let complete = 0;
 
-        class TextScramble {
-           constructor(el) {
-               this.el = el;
-               this.chars = '!@#$%^&*()_-=+{}:"|<>?,./;';
-               this.update = this.update.bind(this);
-           }
-           
-           setText(newText) {
-               const oldText = this.el.innerText;
-               const length = Math.max(oldText.length, newText.length);
-               const promise = new Promise((resolve) => this.resolve = resolve);
-               this.queue = [];
-               
-               for (let i = 0; i < length; i++) {
-                   const from = oldText[i] || '';
-                   const to = newText[i] || '';
-                   const start = Math.floor(Math.random() * 40);
-                   const end = start + Math.floor(Math.random() * 40);
-                   this.queue.push({ from, to, start, end });
-               }
-               
-               cancelAnimationFrame(this.frameRequest);
-               this.frame = 0;
-               this.update();
-               return promise;
-           }
-           
-           update() {
-               let output = '';
-               let complete = 0;
-
-               for (let i = 0, n = this.queue.length; i < n; i++) {
-                   let { from, to, start, end, char } = this.queue[i];
-                   if (this.frame >= end) {
-                       complete++;
-                       output += to;
-                   } else if (this.frame >= start) {
-                       if (!char || Math.random() < 0.28) {
-                           char = this.randomChar();
-                           this.queue[i].char = char;
-                       }
-                       output += `<span class="dud">${char}</span>`;
-                   } else {
-                       output += from;
-                   }
-               }
-               
-               this.el.innerHTML = output;
-
-               if (complete === this.queue.length) {
-                   this.resolve();
-               } else {
-                   this.frameRequest = requestAnimationFrame(this.update);
-                   this.frame++;
-               }
-           }
-           
-           randomChar() {
-               return this.chars[Math.floor(Math.random() * this.chars.length)];
-           }
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+          if (this.frame >= end) {
+            complete++;
+            output += to;
+          } else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) {
+              char = this.randomChar();
+              this.queue[i].char = char;
+            }
+            output += `<span class="dud">${char}</span>`;
+          } else {
+            output += from;
+          }
         }
+        
+        this.el.innerHTML = output;
 
-        const el = document.getElementById('name');
-        const fx = new TextScramble(el);
-
-        function animateText() {
-           fx.setText('איך חלום וועגן מיין טויט').then(() => {
-               setTimeout(() => animateText(), 1000);
-           });
+        if (complete === this.queue.length) {
+          this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(this.update);
+          this.frame++;
         }
+      }
+      
+      randomChar() {
+        return this.chars[Math.floor(Math.random() * this.chars.length)];
+      }
+    }
 
-        animateText();
+    const el = document.getElementById('name');
+    const fx = new TextScramble(el);
 
-        function toggleFriends() {
-           const friendsList = document.getElementById('friendsList');
-           const toggleButton = document.getElementById('toggleMore');
+    function animateText() {
+      fx.setText('איך חלום וועגן מיין טויט').then(() => {
+        setTimeout(() => animateText(), 1000);
+      });
+    }
 
-           if (friendsList.style.display === 'none' || friendsList.style.display === '') {
-               friendsList.style.display = 'block';
-               toggleButton.style.display = 'none'; // Скрыть "Ещё"
-           } else {
-               friendsList.style.display = 'none';
-               toggleButton.style.display = 'block'; // Показать "Ещё"
-           }
-        }
-    </script>
+    animateText();
+  </script>
 </body>
-
 </html>
