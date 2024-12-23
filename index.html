@@ -152,23 +152,22 @@
 
     .mute-button {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: #111;
-      color: white;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(50, 50, 50, 0.8); /* Темный полупрозрачный фон */
       border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      color: white;
+      border-radius: 10px; /* Увеличенное закругление углов */
       cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      padding: 10px 15px;
       z-index: 2;
+      transition: background-color 0.3s, transform 0.3s; /* Плавный переход цвета и масштаба */
     }
 
     .mute-button:hover {
-      background-color: #222;
+      background-color: rgba(70, 70, 70, 0.9); /* Более светлый фон при наведении */
+      transform: scale(1.05); /* Увеличение кнопки при наведении */
     }
 
     @media (max-width: 600px) {
@@ -196,13 +195,13 @@
   </style>
 </head>
 <body>
-  <audio id="background-music" loop>
+  <audio id="background-music" loop autoplay muted>
     <source src="awa - original sound - rukiawaa.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
   <button class="mute-button" id="mute-button">
-    <i class="fas fa-volume-up"></i>
+    Включить
   </button>
 
   <div class="falling-symbols"></div>
@@ -241,12 +240,12 @@
     const muteButton = document.getElementById('mute-button');
 
     muteButton.addEventListener('click', () => {
-      if (backgroundMusic.paused) {
-        backgroundMusic.play();
-        muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      if (backgroundMusic.muted) {
+        backgroundMusic.muted = false;
+        muteButton.innerText = 'Выключить';
       } else {
-        backgroundMusic.pause();
-        muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+        backgroundMusic.muted = true;
+        muteButton.innerText = 'Включить';
       }
     });
 
