@@ -75,16 +75,6 @@
       font-size: 18px;
       color: white;
       margin: 10px 0;
-      animation: glowing 1.5s infinite alternate;
-    }
-
-    @keyframes glowing {
-      0% {
-        text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px #6e57e0, 0 0 20px #6e57e0, 0 0 25px #6e57e0;
-      }
-      100% {
-        text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px #6e57e0, 0 0 40px #6e57e0, 0 0 50px #6e57e0;
-      }
     }
 
     .bio {
@@ -112,10 +102,10 @@
     }
 
     .button-container {
-      display: flex;
-      justify-content: center;
-      margin-top: -5px;
-      flex-wrap: wrap;
+      display: flex; 
+      justify-content: center; 
+      margin-top: -5px; 
+      flex-wrap: wrap; 
     }
 
     .button {
@@ -130,12 +120,11 @@
       cursor: pointer; 
       text-decoration: none; 
       margin: 5px; 
-      transition: background-color 0.3s; 
     }
 
     .button:hover {
-      background-color: #222; 
-    }
+        background-color:#222; 
+     }
 
     .profile-image {
       border-radius: 10px;
@@ -149,194 +138,202 @@
       height: auto;
       border-radius: 10px;
     }
+  .mute-button {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(20, 20, 20, 0.8);
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 15px;
+    z-index: 2;
+    transition: background-color 0.3s; 
+}
 
+.mute-button:hover {
+    background-color: rgba(20, 20, 20, 0.8);
+}
+
+.mute-button:active {
+    background-color: rgba(30, 30, 30, 1); 
+    outline: none; 
+}
+
+.mute-button:active {
+    transition: none; 
+}
+
+@media (prefers-reduced-motion: reduce) {
     .mute-button {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(50, 50, 50, 0.8); /* Темный полупрозрачный фон */
-      border: none;
-      color: white;
-      border-radius: 10px; /* Увеличенное закругление углов */
-      cursor: pointer;
-      padding: 10px 15px;
-      z-index: 2;
-      transition: background-color 0.3s, transform 0.3s; /* Плавный переход цвета и масштаба */
+        transition: none; 
     }
-
-    .mute-button:hover {
-      background-color: rgba(70, 70, 70, 0.9); /* Более светлый фон при наведении */
-      transform: scale(1.05); /* Увеличение кнопки при наведении */
-    }
-
-    @media (max-width: 600px) {
-      .username {
-        font-size: 16px; 
-      }
-
-      .bio {
-        font-size: 12px;
-      }
-
-      .chat-info {
-        font-size: 10px; 
-      }
-
-      .links-title {
-        font-size: 12px; 
-      }
-
-      .button {
-        padding: 4px 8px; 
-        font-size: 0.6rem; 
-      }
-    }
-  </style>
+}
+       
+       .bio {
+         font-size :12 px ;
+       }
+       
+       .chat-info {
+         font-size :10 px ; 
+       }
+       
+       .links-title {
+         font-size :12 px ; 
+       }
+       
+       .button {
+         padding :4 px 8 px ; 
+         font-size :0.6 rem ; 
+       }
+     }
+   </style>
 </head>
 <body>
-  <audio id="background-music" loop autoplay muted>
-    <source src="awa - original sound - rukiawaa.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+   <audio id="background-music" loop autoplay muted>
+     <source src="awa - original sound - rukiawaa.mp3" type="audio/mpeg">
+     Ваш браузер не поддерживает аудио элемент.
+   </audio>
 
-  <button class="mute-button" id="mute-button">
-    Включить
-  </button>
+   <button class="mute-button" id="mute-button">
+     Включить музыку
+   </button>
 
-  <div class="falling-symbols"></div>
-  <div class="profile-card">
-    <div class="profile-image">
-      <img src="https://media1.tenor.com/m/beZEsYQl7XIAAAAd/lelouch-zero.gif" alt="Profile">
-    </div>
-    <h1 id="name" class="username">SYPZA</h1>
-    <p class="bio">
-      Nickname: Flainn1<br>
-      Hobby: development of cheats<br>
-      Country: the Republic of Belarus
-    </p>
-    <div class="separator"></div>
-    <p class="chat-info">
-      Active in these chats:<br>
-      waithware chat<br>
-      Dota 2 / ru hub chat<br>
-      Flainn chat
-    </p>
-    <div class="separator"></div>
-    <h2 class="links-title">LINKS</h2>
-    <div class="button-container">
-      <a href="https://t.me/flainn1" class="button">Telegram Account</a>
-      <a href="https://steamcommunity.com/profiles/76561199246904315/" class="button">Steam Account</a>
-      <a href="https://open.spotify.com/user/31eycpibblnf4zxkbe7b3rcr5nve?si=--FSlWaQR5aUeNr57dammw" class="button">Spotify</a>
-    </div>
-    <div class="button-container">
-      <a href="http://t.me/+Gf87_ANRd6EwNTky" class="button">Flainn Pubg</a>
-      <a href="https://t.me/waithwareso2" class="button">WaithWare</a>
-    </div>
-  </div>
+   <div class="falling-symbols"></div>
+   <div class="profile-card">
+     <div class="profile-image">
+       <img src="https://media1.tenor.com/m/beZEsYQl7XIAAAAd/lelouch-zero.gif" alt="Profile">
+     </div>
+     <h1 id="name" class="username">SYPZA</h1>
+     <p class="bio">
+       Nickname : Flainn1<br>
+       Hobby : development of cheats<br>
+       Country : the Republic of Belarus
+     </p>
+     <div class="separator"></div>
+     <p class="chat-info">
+       Active in these chats:<br>
+       waithware chat<br>
+       Dota 2 / ru hub chat<br>
+       Flainn chat
+     </p>
+     <div class="separator"></div>
+     <h2 class="links-title">LINKS</h2>
+     <div class="button-container">
+       <a href="https://t.me/flainn1" class="button">Telegram Account</a>
+       <a href="https://steamcommunity.com/profiles/76561199246904315/" class="button">Steam Account</a>
+       <a href="https://open.spotify.com/user/31eycpibblnf4zxkbe7b3rcr5nve?si=--FSlWaQR5aUeNr57dammw" class="button">Spotify</a>
+     </div>
+     <div class="button-container">
+       <a href="http://t.me/+Gf87_ANRd6EwNTky" class="button">Flainn Pubg</a>
+       <a href="https://t.me/waithwareso2" class="button">WaithWare</a>
+     </div>
+   </div>
 
-  <script>
-    const backgroundMusic = document.getElementById('background-music');
-    const muteButton = document.getElementById('mute-button');
+   <script>
+     const backgroundMusic = document.getElementById('background-music');
+     const muteButton = document.getElementById('mute-button');
 
-    muteButton.addEventListener('click', () => {
-      if (backgroundMusic.muted) {
-        backgroundMusic.muted = false;
-        muteButton.innerText = 'Выключить';
-      } else {
-        backgroundMusic.muted = true;
-        muteButton.innerText = 'Включить';
-      }
-    });
+     muteButton.addEventListener('click', () => {
+         if (backgroundMusic.muted) {
+             backgroundMusic.muted = false; 
+             muteButton.innerText = 'Выключить музыку'; 
+         } else {
+             backgroundMusic.muted = true; 
+             muteButton.innerText = 'Включить музыку'; 
+         }
+     });
 
-    function createFallingSymbols() {
-      const symbols = '♰';
-      const container = document.querySelector('.falling-symbols');
-      for (let i = 0; i < 50; i++) {
-        const symbol = document.createElement('div');
-        symbol.classList.add('symbol');
-        symbol.textContent = symbols.charAt(Math.floor(Math.random() * symbols.length));
-        symbol.style.left = `${Math.random() * 100}vw`;
-        symbol.style.animationDuration = `${Math.random() * 3 + 2}s`;
-        symbol.style.animationDelay = `${Math.random() * 5}s`;
-        container.appendChild(symbol);
-      }
-    }
+     function createFallingSymbols() {
+         const symbols = '♰';
+         const container = document.querySelector('.falling-symbols');
+         for (let i = 0; i < 50; i++) {
+             const symbol = document.createElement('div');
+             symbol.classList.add('symbol');
+             symbol.textContent = symbols.charAt(Math.floor(Math.random() * symbols.length));
+             symbol.style.left = `${Math.random() * 100}vw`;
+             symbol.style.animationDuration = `${Math.random() * 3 + 2}s`;
+             symbol.style.animationDelay = `${Math.random() * 5}s`;
+             container.appendChild(symbol);
+         }
+     }
 
-    createFallingSymbols();
+     createFallingSymbols();
 
-    class TextScramble {
-      constructor(el) {
-        this.el = el;
-        this.chars = '!@#$%^&*()_-=+{}:"|<>?,./;';
-        this.update = this.update.bind(this);
-      }
-      
-      setText(newText) {
-        const oldText = this.el.innerText;
-        const length = Math.max(oldText.length, newText.length);
-        const promise = new Promise((resolve) => this.resolve = resolve);
-        this.queue = [];
-        
-        for (let i = 0; i < length; i++) {
-          const from = oldText[i] || '';
-          const to = newText[i] || '';
-          const start = Math.floor(Math.random() * 40);
-          const end = start + Math.floor(Math.random() * 40);
-          this.queue.push({ from, to, start, end });
-        }
-        
-        cancelAnimationFrame(this.frameRequest);
-        this.frame = 0;
-        this.update();
-        return promise;
-      }
-      
-      update() {
-        let output = '';
-        let complete = 0;
+     class TextScramble {
+         constructor(el) {
+             this.el = el;
+             this.chars = '!@#$%^&*()_-=+{}:"|<>?,./;';
+             this.update = this.update.bind(this);
+         }
 
-        for (let i = 0, n = this.queue.length; i < n; i++) {
-          let { from, to, start, end, char } = this.queue[i];
-          if (this.frame >= end) {
-            complete++;
-            output += to;
-          } else if (this.frame >= start) {
-            if (!char || Math.random() < 0.28) {
-              char = this.randomChar();
-              this.queue[i].char = char;
-            }
-            output += `<span class="dud">${char}</span>`;
-          } else {
-            output += from;
-          }
-        }
-        
-        this.el.innerHTML = output;
+         setText(newText) {
+             const oldText = this.el.innerText;
+             const length = Math.max(oldText.length, newText.length);
+             const promise = new Promise((resolve) => this.resolve = resolve);
+             this.queue = [];
 
-        if (complete === this.queue.length) {
-          this.resolve();
-        } else {
-          this.frameRequest = requestAnimationFrame(this.update);
-          this.frame++;
-        }
-      }
-      
-      randomChar() {
-        return this.chars[Math.floor(Math.random() * this.chars.length)];
-      }
-    }
+             for (let i = 0; i < length; i++) {
+                 const from = oldText[i] || '';
+                 const to = newText[i] || '';
+                 const start = Math.floor(Math.random() * 40);
+                 const end = start + Math.floor(Math.random() * 40);
+                 this.queue.push({ from, to, start, end });
+             }
 
-    const el = document.getElementById('name');
-    const fx = new TextScramble(el);
+             cancelAnimationFrame(this.frameRequest);
+             this.frame = 0;
+             this.update();
+             return promise;
+         }
 
-    function animateText() {
-      fx.setText('איך חלום וועגן מיין טויט').then(() => {
-        setTimeout(() => animateText(), 1000);
-      });
-    }
+         update() {
+             let output = '';
+             let complete = 0;
 
-    animateText();
-  </script>
+             for (let i = 0, n = this.queue.length; i < n; i++) {
+                 let { from, to, start, end, char } = this.queue[i];
+                 if (this.frame >= end) {
+                     complete++;
+                     output += to;
+                 } else if (this.frame >= start) {
+                     if (!char || Math.random() < 0.28) {
+                         char = this.randomChar();
+                         this.queue[i].char = char;
+                     }
+                     output += `<span class="dud">${char}</span>`;
+                 } else {
+                     output += from;
+                 }
+             }
+
+             this.el.innerHTML = output;
+
+             if (complete === this.queue.length) {
+                 this.resolve();
+             } else {
+                 this.frameRequest = requestAnimationFrame(this.update);
+                 this.frame++;
+             }
+         }
+
+         randomChar() {
+             return this.chars[Math.floor(Math.random() * this.chars.length)];
+         }
+     }
+
+     const el = document.getElementById('name');
+     const fx = new TextScramble(el);
+
+     function animateText() {
+         fx.setText('איך חלום וועגן מיין טויט').then(() => { 
+             setTimeout(() => animateText(), 1000);
+         });
+     }
+
+     animateText();
+   </script>
 </body>
 </html>
