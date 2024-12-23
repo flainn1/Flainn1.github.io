@@ -236,15 +236,15 @@
      const backgroundMusic = document.getElementById('background-music');
      const muteButton = document.getElementById('mute-button');
 
-     muteButton.addEventListener('click', () => {
-         if (backgroundMusic.muted) {
-             backgroundMusic.muted = false; 
-             muteButton.innerText = 'Выключить музыку'; 
-         } else {
-             backgroundMusic.muted = true; 
-             muteButton.innerText = 'Включить музыку'; 
-         }
-     });
+muteButton.addEventListener('click', () => {
+    if (backgroundMusic.paused) {
+        backgroundMusic.play();
+        muteButton.innerText = 'Выключить музыку';
+    } else {
+        backgroundMusic.pause();
+        muteButton.innerText = 'Включить музыку';
+    }
+});
 
      function createFallingSymbols() {
          const symbols = '♰';
