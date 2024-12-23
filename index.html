@@ -150,6 +150,27 @@
       border-radius: 10px;
     }
 
+    .mute-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #111;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .mute-button:hover {
+      background-color: #222;
+    }
+
     @media (max-width: 600px) {
       .username {
         font-size: 16px; 
@@ -175,6 +196,15 @@
   </style>
 </head>
 <body>
+  <audio id="background-music" loop>
+    <source src="awa - original sound - rukiawaa.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button class="mute-button" id="mute-button">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
   <div class="falling-symbols"></div>
   <div class="profile-card">
     <div class="profile-image">
@@ -202,11 +232,24 @@
     </div>
     <div class="button-container">
       <a href="http://t.me/+Gf87_ANRd6EwNTky" class="button">Flainn Pubg</a>
-      <a href="https://t.me/waithwareso2" class="button">WaithWare</a></a>
+      <a href="https://t.me/waithwareso2" class="button">WaithWare</a>
     </div>
   </div>
 
   <script>
+    const backgroundMusic = document.getElementById('background-music');
+    const muteButton = document.getElementById('mute-button');
+
+    muteButton.addEventListener('click', () => {
+      if (backgroundMusic.paused) {
+        backgroundMusic.play();
+        muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      } else {
+        backgroundMusic.pause();
+        muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+      }
+    });
+
     function createFallingSymbols() {
       const symbols = '♰';
       const container = document.querySelector('.falling-symbols');
@@ -295,26 +338,6 @@
     }
 
     animateText();
-    <audio id="background-music" src="awa - original sound - rukiawaa.mp3" loop></audio>
-<button id="mute-button" class="button" style="position: absolute; top: 10px; right: 10px; background-color: #111; color: white;">
-    <i class="fas fa-volume-up"></i>
-</button>
-
-<script>
-    const audio = document.getElementById('background-music');
-    const button = document.getElementById('mute-button');
-
-    button.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            button.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        } else {
-            audio.pause();
-            button.innerHTML = '<i class="fas fa-volume-up"></i>';
-        }
-    });
-</script>
-  
   </script>
 </body>
 </html>
